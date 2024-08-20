@@ -1,0 +1,26 @@
+<div class="m-3">
+  <%= form_with(url: "/get_users", method: :get, data: {controller:"user", action: "submit->user#user_search"}) do |f| %>
+    <%= text_field_tag :query, params[:query], data: {target: "user.emp"}, placeholder: "Enter country to list users", style: "width:300px" %>
+    <%= submit_tag("Search", class: "btn btn-primary btn-sm") %>
+  <% end %>
+  <% if @users.nil? %>
+    <p>Enter user name</p>
+  <% else %>
+    <% if @users == [] %>
+      <p>No Users present for this country</p>
+    <% else %>
+      <div class="row mt-2">
+        <% @users.each do |user| %>
+          <div class="col-md-2">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h1 class="card-title mb-0"><%= user.firstname %> <%= user.lastname %></h1>
+                <p class="card-text "><%= user.country %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
