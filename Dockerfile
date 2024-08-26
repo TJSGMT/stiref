@@ -16,7 +16,7 @@ RUN bundle install
 # Copy the rest of the application code into the Docker container
 COPY . .
 
-# **Enable caching in development mode**
+# Enable caching in development mode
 RUN bundle exec rails dev:cache
 
 # Precompile assets for production
@@ -32,5 +32,5 @@ ENV RAILS_ENV=development
 ARG SECRET_KEY_BASE
 ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
 
-# Specify the command to run the application server
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# **RUN MIGRATIONS AND START THE SERVER**
+CMD ["bash", "-c", "bundle exec rake db:migrate && SECRET_KEY_BASE=$SECRET_KEY_BASE bundle exec rails server -b 0.0.0.0"]
