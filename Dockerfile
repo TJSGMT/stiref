@@ -16,6 +16,9 @@ RUN bundle install
 # Copy the rest of the application code into the Docker container
 COPY . .
 
+# **Enable caching in development mode**
+RUN bundle exec rails dev:cache
+
 # Precompile assets for production
 RUN bundle exec rails assets:precompile
 

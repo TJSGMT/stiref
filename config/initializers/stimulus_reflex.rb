@@ -4,7 +4,8 @@ StimulusReflex.configure do |config|
   # Enable/disable exiting / warning when the sanity checks fail options:
   # `:exit` or `:warn` or `:ignore`
 
-  # config.on_failed_sanity_checks = :exit
+  # Change the following line to warn instead of exit to bypass caching checks
+  config.on_failed_sanity_checks = :warn
 
   # Override the parent class that the StimulusReflex ActionCable channel inherits from
 
