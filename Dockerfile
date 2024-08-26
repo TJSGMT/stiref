@@ -22,10 +22,12 @@ RUN bundle exec rails assets:precompile
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Set environment variables for the Rails environment and secret key
+# Set environment variables for the Rails environment
 ENV RAILS_ENV=development
-ENV SECRET_KEY_BASE=`rake secret`
+
+# Use build argument for SECRET_KEY_BASE
+ARG SECRET_KEY_BASE
+ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
 
 # Specify the command to run the application server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
-
